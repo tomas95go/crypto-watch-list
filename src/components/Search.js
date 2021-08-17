@@ -1,5 +1,11 @@
-const Search = (props) => {
-  return <input type="text" onInput={(event) => props.onSearch(event)}></input>;
+const Search = ({ search, onSearch }) => {
+  return (
+    <input
+      type="text"
+      value={search}
+      onInput={(event) => onSearch(event)}
+    ></input>
+  );
 };
 
 export default Search;

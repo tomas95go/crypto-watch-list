@@ -21,7 +21,7 @@ const App = () => {
     },
   ];
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('BNB');
 
   const handleSearch = (event) => {
     return setSearchTerm(event.target.value);
@@ -34,7 +34,7 @@ const App = () => {
   return (
     <div>
       <h1> Hi! </h1>
-      <Search onSearch={handleSearch} />
+      <Search search={searchTerm} onSearch={handleSearch} />
       <List list={searchedCoins} />
     </div>
   );
