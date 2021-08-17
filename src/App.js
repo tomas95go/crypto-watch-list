@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import List from './components/List';
+import Search from './components/Search';
 
-function App() {
+const App = () => {
+  let list = [
+    {
+      id: 1,
+      desc: `BTC`,
+      marketcap: `100000`,
+    },
+    {
+      id: 2,
+      desc: `ETH`,
+      marketcap: `2000`,
+    },
+    {
+      id: 3,
+      desc: `BNB`,
+      marketcap: `100`,
+    },
+  ];
+
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = (event) => {
+    return setSearchTerm(event.target.value);
+  };
+
+  const searchedCoins = list.filter((coin) =>
+    coin.desc.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1> Hi! </h1>
+      <Search onSearch={handleSearch} />
+      <List list={searchedCoins} />
     </div>
   );
-}
+};
 
 export default App;
