@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 const List = ({ coinList }) => {
   return (
     <div>
@@ -40,7 +41,9 @@ const List = ({ coinList }) => {
                   {on_watch_list ? (
                     <button>On watchlist</button>
                   ) : (
-                    <button>Set alert</button>
+                    <button>
+                      <Link to="/add-alert">Set alert</Link>
+                    </button>
                   )}
                 </td>
               </tr>

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import List from './components/List';
 import Search from './components/Search';
 import Watchlist from './components/Watchlist';
+import AddAlertForm from './components/AddAlertForm';
 
 const App = () => {
   const [coinList, setCoinList] = useState([]);
@@ -58,6 +59,9 @@ const App = () => {
           </Route>
           <Route exact path="/watchlist">
             <Watchlist />
+          </Route>
+          <Route exact path="/add-alert">
+            <AddAlertForm />
           </Route>
         </Switch>
       </Router>
