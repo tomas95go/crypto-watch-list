@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import List from './components/List';
 import Search from './components/Search';
+import Random from './components/Random';
 
 const App = () => {
   const [coinList, setCoinList] = useState([]);
@@ -31,8 +33,34 @@ const App = () => {
   return (
     <div>
       <h1> Coins list {searchTerm}</h1>
-      <Search search={searchTerm} onSearch={handleSearch} />
-      {coinList.length ? <List coinList={searchedCoins} /> : <p>Cargando...</p>}
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Coins</Link>
+              </li>
+              <li>
+                <Link to="/random"> Watchlist </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <Switch>
+          <Route exact path="/">
+            <Search search={searchTerm} onSearch={handleSearch} />
+            {coinList.length ? (
+              <List coinList={searchedCoins} />
+            ) : (
+              <p>Cargando...</p>
+            )}
+          </Route>
+          <Route exact path="/random">
+            <Random />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 };
