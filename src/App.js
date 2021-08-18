@@ -60,9 +60,7 @@ const App = () => {
           <Route exact path="/watchlist">
             <Watchlist />
           </Route>
-          <Route exact path="/add-alert">
-            <AddAlertForm />
-          </Route>
+          <Route exact path="/add-alert" component={AddAlertForm} />
         </Switch>
       </Router>
     </div>

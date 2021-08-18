@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 const List = ({ coinList }) => {
   return (
     <div>
@@ -27,12 +28,7 @@ const List = ({ coinList }) => {
               <tr key={id}>
                 <td>{name}</td>
                 <td>
-                  <img
-                    src={image}
-                    alt={symbol}
-                    height="25px"
-                    width="25px"
-                  ></img>
+                  <img src={image} alt={name} height="25px" width="25px"></img>
                   {symbol}
                 </td>
                 <td>{current_price}</td>
@@ -42,7 +38,14 @@ const List = ({ coinList }) => {
                     <button>On watchlist</button>
                   ) : (
                     <button>
-                      <Link to="/add-alert">Set alert</Link>
+                      <Link
+                        to={{
+                          pathname: `/add-alert`,
+                          state: { id, name, image, symbol },
+                        }}
+                      >
+                        Set alert
+                      </Link>
                     </button>
                   )}
                 </td>
