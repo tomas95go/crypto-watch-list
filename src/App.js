@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import List from './components/List';
 import Search from './components/Search';
-import Random from './components/Random';
+import Watchlist from './components/Watchlist';
 
 const App = () => {
   const [coinList, setCoinList] = useState([]);
@@ -41,7 +41,7 @@ const App = () => {
                 <Link to="/">Coins</Link>
               </li>
               <li>
-                <Link to="/random"> Watchlist </Link>
+                <Link to="/watchlist"> Watchlist </Link>
               </li>
             </ul>
           </nav>
@@ -56,8 +56,8 @@ const App = () => {
               <p>Cargando...</p>
             )}
           </Route>
-          <Route exact path="/random">
-            <Random />
+          <Route exact path="/watchlist">
+            <Watchlist />
           </Route>
         </Switch>
       </Router>
