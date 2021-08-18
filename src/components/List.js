@@ -8,11 +8,20 @@ const List = ({ coinList }) => {
             <th>Symbol</th>
             <th>Current Price</th>
             <th>Marketcap</th>
+            <th>Watchlist</th>
           </tr>
         </thead>
         <tbody>
           {coinList.map((coin) => {
-            const { id, name, symbol, current_price, market_cap, image } = coin;
+            const {
+              id,
+              name,
+              symbol,
+              current_price,
+              market_cap,
+              image,
+              on_watch_list,
+            } = coin;
             return (
               <tr key={id}>
                 <td>{name}</td>
@@ -27,6 +36,13 @@ const List = ({ coinList }) => {
                 </td>
                 <td>{current_price}</td>
                 <td>{market_cap}</td>
+                <td>
+                  {on_watch_list ? (
+                    <button>On watchlist</button>
+                  ) : (
+                    <button>Set alert</button>
+                  )}
+                </td>
               </tr>
             );
           })}
