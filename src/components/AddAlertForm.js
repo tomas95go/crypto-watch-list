@@ -7,6 +7,8 @@ const AddAlertForm = ({
   },
   match,
   onWatchList,
+  handleModalStatus,
+  isOpen,
 }) => {
   const alertTypes = [
     {
@@ -59,10 +61,6 @@ const AddAlertForm = ({
     },
   ];
 
-  const handleModalStatus = () => {
-    setModalStatus(!isOpen);
-  };
-
   const handleAlertType = (event) => {
     setAlertType(event.target.value);
   };
@@ -71,7 +69,6 @@ const AddAlertForm = ({
     setAlertTrigger(event.target.value);
   };
 
-  const [isOpen, setModalStatus] = useState(false);
   const [alertType, setAlertType] = useState(0);
   const [alertTrigger, setAlertTrigger] = useState(0);
 
@@ -131,6 +128,7 @@ const AddAlertForm = ({
           alertTrigger={alertTrigger}
           alertTypeDesc={alertTypes[alertType].description}
           onWatchList={onWatchList}
+          action="add"
         />
       ) : (
         false

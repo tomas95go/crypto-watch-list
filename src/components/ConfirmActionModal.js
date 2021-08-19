@@ -7,9 +7,10 @@ const ConfirmActionModal = ({
   alertTrigger,
   alertTypeDesc,
   onWatchList,
+  action,
 }) => {
-  const handleWatchList = () => {
-    return onWatchList(id);
+  const handleWatchList = (event) => {
+    return onWatchList(event.target.value, action);
   };
 
   return (
@@ -26,7 +27,9 @@ const ConfirmActionModal = ({
         <p>{alertTrigger}%</p>
       )}
       <p>{alertTypeDesc}</p>
-      <button onClick={() => handleWatchList()}>Confirm</button>
+      <button value={id} onClick={(event) => handleWatchList(event)}>
+        Confirm
+      </button>
       <button>Cancel</button>
     </div>
   );

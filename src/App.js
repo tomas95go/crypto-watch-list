@@ -8,6 +8,7 @@ import AddAlertForm from './components/AddAlertForm';
 const App = () => {
   const [coinList, setCoinList] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isOpen, setModalStatus] = useState(false);
 
   useEffect(() => {
     fetch(
@@ -31,24 +32,39 @@ const App = () => {
     coin.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const addToWatchList = (id) => {
-    const coinInWatchList = coinList.filter((coin) => {
-      if (coin.id === id) {
-        return (coin.on_watch_list = !coin.on_watch_list);
-      }
-      return coin;
-    });
+  const handleWatchList = (id, code) => {
+    let coinInWatchList;
+    if (code === `remove`) {
+      coinInWatchList = removeFromWatchlist(id);
+    }
+    if (code === `add`) {
+      coinInWatchList = addToWatchList(id);
+    }
     return setCoinList(coinInWatchList);
   };
 
-  const removeFromWatchlist = (id) => {
-    const coinInWatchList = coinList.filter((coin, i) => {
+  const addToWatchList = (id) => {
+    const coinInWatchList = coinList.filter((coin) => {
       if (coin.id === id) {
-        return (coin.on_watch_list = !coin.on_watch_list);
+        coin.on_watch_list = true;
       }
       return coin;
     });
-    return setCoinList(coinInWatchList);
+    return coinInWatchList;
+  };
+
+  const handleModalStatus = () => {
+    setModalStatus(!isOpen);
+  };
+
+  const removeFromWatchlist = (id) => {
+    const coinInWatchList = coinList.filter((coin) => {
+      if (coin.id === id) {
+        coin.on_watch_list = false;
+      }
+      return coin;
+    });
+    return coinInWatchList;
   };
 
   const coinsInWatchList = coinList.filter((coin) => {
@@ -65,9 +81,6 @@ const App = () => {
               <li>
                 <Link to="/">Coins</Link>
               </li>
-              <li>
-                <Link to="/watchlist"> Watchlist </Link>
-              </li>
             </ul>
           </nav>
         </div>
@@ -76,24 +89,33 @@ const App = () => {
           <Route exact path="/">
             <Search search={searchTerm} onSearch={handleSearch} />
             {coinList.length ? (
-              <List coinList={searchedCoins} onWatchList={addToWatchList} />
+              <List coinList={searchedCoins} />
             ) : (
               <p>Cargando...</p>
             )}
           </Route>
-          <Route exact path="/watchlist">
-            <Watchlist
-              coinsInWatchList={coinsInWatchList}
-              removeFromWatchlist={removeFromWatchlist}
-            />
-          </Route>
+          <Route
+            exact
+            path="/watchlist"
+            render={(props) => (
+              <Watchlist
+                coinsInWatchList={coinsInWatchList}
+                removeFromWatchlist={handleWatchList}
+                handleModalStatus={handleModalStatus}
+                isOpen={isOpen}
+                location={props.location}
+              />
+            )}
+          />
           <Route
             exact
             path="/add-alert"
             render={(props) => (
               <AddAlertForm
-                onWatchList={addToWatchList}
+                onWatchList={handleWatchList}
                 location={props.location}
+                handleModalStatus={handleModalStatus}
+                isOpen={isOpen}
               />
             )}
           />

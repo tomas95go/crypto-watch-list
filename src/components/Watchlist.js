@@ -1,8 +1,13 @@
-const Watchlist = ({ coinsInWatchList, removeFromWatchlist }) => {
-  const handleCoinRemoval = (event) => {
-    return removeFromWatchlist(event.target.value);
-  };
-
+import ConfirmActionModal from './ConfirmActionModal';
+const Watchlist = ({
+  coinsInWatchList,
+  removeFromWatchlist,
+  handleModalStatus,
+  isOpen,
+  location: {
+    state: { name, id, image, symbol },
+  },
+}) => {
   return (
     <div>
       <table>
@@ -26,14 +31,7 @@ const Watchlist = ({ coinsInWatchList, removeFromWatchlist }) => {
                   <td>{coin.market_cap}</td>
                   {coin.on_watch_list ? (
                     <td>
-                      <button
-                        value={coin.id}
-                        onClick={(event) => {
-                          handleCoinRemoval(event);
-                        }}
-                      >
-                        Remove
-                      </button>
+                      <button onClick={handleModalStatus}>Remove</button>
                     </td>
                   ) : (
                     false
@@ -48,6 +46,22 @@ const Watchlist = ({ coinsInWatchList, removeFromWatchlist }) => {
           )}
         </tbody>
       </table>
+      {isOpen ? (
+        <ConfirmActionModal
+          isOpen={isOpen}
+          name={name}
+          id={id}
+          image={image}
+          symbol={symbol}
+          alertType=""
+          alertTrigger=""
+          alertTypeDesc=""
+          onWatchList={removeFromWatchlist}
+          action="remove"
+        />
+      ) : (
+        false
+      )}
     </div>
   );
 };
