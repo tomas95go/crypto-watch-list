@@ -10,12 +10,15 @@ const ConfirmActionModal = ({
   action,
 }) => {
   const handleWatchList = (event) => {
-    return onWatchList(event.target.value, action);
+    onWatchList(event.target.value, action);
   };
 
   return (
     <div className="modal is-active">
-      <div className="modal-background"></div>
+      <div
+        className="modal-background"
+        onClick={(event) => handleWatchList(event)}
+      ></div>
       <div className="modal-card">
         <header className="modal-card-head">
           <p className="modal-card-title has-text-centered">Confirm action</p>
@@ -43,7 +46,12 @@ const ConfirmActionModal = ({
           >
             Save changes
           </button>
-          <button className="button">Cancel</button>
+          <button
+            className="button"
+            onClick={(event) => handleWatchList(event)}
+          >
+            Cancel
+          </button>
         </footer>
       </div>
     </div>
