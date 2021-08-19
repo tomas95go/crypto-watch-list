@@ -43,17 +43,17 @@ const List = ({ coinList }) => {
                   <td>{market_cap}</td>
                   <td>
                     {on_watch_list ? (
-                      <button className="button is-link is-small">
-                        <Link
-                          className="has-text-white"
-                          to={{
-                            pathname: `/watchlist`,
-                            state: { id, name, image, symbol },
-                          }}
-                        >
+                      <Link
+                        className="has-text-white"
+                        to={{
+                          pathname: `/watchlist`,
+                          state: { id, name, image, symbol },
+                        }}
+                      >
+                        <button className="button is-link is-small">
                           On watchlist
-                        </Link>
-                      </button>
+                        </button>
+                      </Link>
                     ) : (
                       <button className="button is-primary is-small">
                         <Link
