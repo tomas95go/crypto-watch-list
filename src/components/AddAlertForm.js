@@ -6,6 +6,7 @@ const AddAlertForm = ({
     state: { name, id, image, symbol },
   },
   match,
+  onWatchList,
 }) => {
   const alertTypes = [
     {
@@ -129,6 +130,7 @@ const AddAlertForm = ({
           alertType={alertType}
           alertTrigger={alertTrigger}
           alertTypeDesc={alertTypes[alertType].description}
+          onWatchList={onWatchList}
         />
       ) : (
         false
