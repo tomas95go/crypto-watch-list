@@ -55,12 +55,14 @@ const NavBar = ({
 
       <Switch>
         <Route exact path="/">
-          <Search search={searchTerm} onSearch={handleSearch} />
-          {coinList.length ? (
-            <List coinList={searchedCoins} />
-          ) : (
-            <p>Cargando...</p>
-          )}
+          <div className="box">
+            <Search search={searchTerm} onSearch={handleSearch} />
+            {coinList.length ? (
+              <List coinList={searchedCoins} />
+            ) : (
+              <p>Cargando...</p>
+            )}
+          </div>
         </Route>
         <Route
           exact
