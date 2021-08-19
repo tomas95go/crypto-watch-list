@@ -41,8 +41,17 @@ const App = () => {
     return setCoinList(coinInWatchList);
   };
 
+  const removeFromWatchlist = (id) => {
+    const coinInWatchList = coinList.filter((coin, i) => {
+      if (coin.id === id) {
+        return (coin.on_watch_list = !coin.on_watch_list);
+      }
+      return coin;
+    });
+    return setCoinList(coinInWatchList);
+  };
+
   const coinsInWatchList = coinList.filter((coin) => {
-    console.log(coin.on_watch_list);
     return coin.on_watch_list ? coin : false;
   });
 
@@ -73,7 +82,10 @@ const App = () => {
             )}
           </Route>
           <Route exact path="/watchlist">
-            <Watchlist coinsInWatchList={coinsInWatchList} />
+            <Watchlist
+              coinsInWatchList={coinsInWatchList}
+              removeFromWatchlist={removeFromWatchlist}
+            />
           </Route>
           <Route
             exact

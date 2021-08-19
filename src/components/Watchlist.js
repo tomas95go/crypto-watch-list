@@ -1,5 +1,8 @@
-const Watchlist = ({ coinsInWatchList }) => {
-  console.log(coinsInWatchList);
+const Watchlist = ({ coinsInWatchList, removeFromWatchlist }) => {
+  const handleCoinRemoval = (event) => {
+    return removeFromWatchlist(event.target.value);
+  };
+
   return (
     <div>
       <table>
@@ -21,7 +24,20 @@ const Watchlist = ({ coinsInWatchList }) => {
                   <td>{coin.current_price}</td>
                   <td>{coin.symbol}</td>
                   <td>{coin.market_cap}</td>
-                  <td>Remove</td>
+                  {coin.on_watch_list ? (
+                    <td>
+                      <button
+                        value={coin.id}
+                        onClick={(event) => {
+                          handleCoinRemoval(event);
+                        }}
+                      >
+                        Remove
+                      </button>
+                    </td>
+                  ) : (
+                    false
+                  )}
                 </tr>
               );
             })
