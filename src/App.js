@@ -5,6 +5,7 @@ const App = () => {
   const [coinList, setCoinList] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setModalStatus] = useState(false);
+  const [isActive, setNavbarStatus] = useState(false);
 
   useEffect(() => {
     fetch(
@@ -67,9 +68,12 @@ const App = () => {
     return coin.on_watch_list ? coin : false;
   });
 
+  const handleNavbarStatus = () => {
+    setNavbarStatus(!isActive);
+  };
+
   return (
-    <div>
-      <h1> Coins list </h1>
+    <div className="container-fluid">
       <NavBar
         searchTerm={searchTerm}
         handleSearch={handleSearch}
@@ -79,6 +83,8 @@ const App = () => {
         handleModalStatus={handleModalStatus}
         handleWatchList={handleWatchList}
         coinsInWatchList={coinsInWatchList}
+        handleNavbarStatus={handleNavbarStatus}
+        isActive={isActive}
       />
     </div>
   );
