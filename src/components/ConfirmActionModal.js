@@ -14,23 +14,38 @@ const ConfirmActionModal = ({
   };
 
   return (
-    <div>
-      <h1>Confirm Modal!</h1>
-      <p>{id}</p>
-      <p>{name}</p>
-      <p>{image}</p>
-      <p>{symbol}</p>
-      <p>{alertType}</p>
-      {Number(alertType) === 2 ? (
-        <p>-{alertTrigger}%</p>
-      ) : (
-        <p>{alertTrigger}%</p>
-      )}
-      <p>{alertTypeDesc}</p>
-      <button value={id} onClick={(event) => handleWatchList(event)}>
-        Confirm
-      </button>
-      <button>Cancel</button>
+    <div className="modal is-active">
+      <div className="modal-background"></div>
+      <div className="modal-card">
+        <header className="modal-card-head">
+          <p className="modal-card-title has-text-centered">Confirm action</p>
+          <button className="delete" aria-label="close"></button>
+        </header>
+        <section className="modal-card-body">
+          <p className="has-text-center">
+            Do you want to confirm the <strong>{name}</strong> alert when{' '}
+            <strong>{alertTypeDesc.toLowerCase()}</strong>{' '}
+            <strong>
+              {Number(alertType) === 2 ? (
+                <span>-{alertTrigger}%</span>
+              ) : (
+                <span>{alertTrigger}%</span>
+              )}
+            </strong>{' '}
+            ?
+          </p>
+        </section>
+        <footer className="modal-card-foot">
+          <button
+            className="button is-success"
+            value={id}
+            onClick={(event) => handleWatchList(event)}
+          >
+            Save changes
+          </button>
+          <button className="button">Cancel</button>
+        </footer>
+      </div>
     </div>
   );
 };
