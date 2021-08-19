@@ -1,4 +1,5 @@
-const Watchlist = () => {
+const Watchlist = ({ coinsInWatchList }) => {
+  console.log(coinsInWatchList);
   return (
     <div>
       <table>
@@ -12,13 +13,23 @@ const Watchlist = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Bitcoin</td>
-            <td>38850</td>
-            <td>+10%</td>
-            <td>email</td>
-            <td>Remove</td>
-          </tr>
+          {coinsInWatchList.length ? (
+            coinsInWatchList.map((coin) => {
+              return (
+                <tr key={coin.id}>
+                  <td>{coin.name}</td>
+                  <td>{coin.current_price}</td>
+                  <td>{coin.symbol}</td>
+                  <td>{coin.market_cap}</td>
+                  <td>Remove</td>
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td>You don't have anything on your watchlist yet!</td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
