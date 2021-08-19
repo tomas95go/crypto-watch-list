@@ -55,17 +55,17 @@ const List = ({ coinList }) => {
                         </button>
                       </Link>
                     ) : (
-                      <button className="button is-primary is-small">
-                        <Link
-                          className="has-text-white"
-                          to={{
-                            pathname: `/add-alert`,
-                            state: { id, name, image, symbol },
-                          }}
-                        >
+                      <Link
+                        className="has-text-white"
+                        to={{
+                          pathname: `/add-alert`,
+                          state: { id, name, image, symbol },
+                        }}
+                      >
+                        <button className="button is-primary is-small">
                           Set alert
-                        </Link>
-                      </button>
+                        </button>
+                      </Link>
                     )}
                   </td>
                 </tr>
