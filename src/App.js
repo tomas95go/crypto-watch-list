@@ -31,15 +31,29 @@ const App = () => {
     coin.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const coinsInWatchList = (id) => {
+  const addToWatchList = (id) => {
     const coinInWatchList = coinList.filter((coin) => {
       if (coin.id === id) {
         return (coin.on_watch_list = !coin.on_watch_list);
       }
       return coin;
     });
-    return coinInWatchList;
+    return setCoinList(coinInWatchList);
   };
+
+  const removeFromWatchlist = (id) => {
+    const coinInWatchList = coinList.filter((coin, i) => {
+      if (coin.id === id) {
+        return (coin.on_watch_list = !coin.on_watch_list);
+      }
+      return coin;
+    });
+    return setCoinList(coinInWatchList);
+  };
+
+  const coinsInWatchList = coinList.filter((coin) => {
+    return coin.on_watch_list ? coin : false;
+  });
 
   return (
     <div>
@@ -62,20 +76,23 @@ const App = () => {
           <Route exact path="/">
             <Search search={searchTerm} onSearch={handleSearch} />
             {coinList.length ? (
-              <List coinList={searchedCoins} onWatchList={coinsInWatchList} />
+              <List coinList={searchedCoins} onWatchList={addToWatchList} />
             ) : (
               <p>Cargando...</p>
             )}
           </Route>
           <Route exact path="/watchlist">
-            <Watchlist />
+            <Watchlist
+              coinsInWatchList={coinsInWatchList}
+              removeFromWatchlist={removeFromWatchlist}
+            />
           </Route>
           <Route
             exact
             path="/add-alert"
             render={(props) => (
               <AddAlertForm
-                onWatchList={coinsInWatchList}
+                onWatchList={addToWatchList}
                 location={props.location}
               />
             )}
