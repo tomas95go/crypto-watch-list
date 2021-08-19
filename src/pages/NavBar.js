@@ -60,7 +60,9 @@ const NavBar = ({
             {coinList.length ? (
               <List coinList={searchedCoins} />
             ) : (
-              <p>Cargando...</p>
+              <div className="has-text-centered">
+                <p className="is-size-3">Loading...</p>{' '}
+              </div>
             )}
           </div>
         </Route>
