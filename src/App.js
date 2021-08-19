@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import List from './components/List';
-import Search from './components/Search';
-import Watchlist from './components/Watchlist';
-import AddAlertForm from './components/AddAlertForm';
+import NavBar from './pages/NavBar';
 
 const App = () => {
   const [coinList, setCoinList] = useState([]);
@@ -73,54 +69,17 @@ const App = () => {
 
   return (
     <div>
-      <h1> Coins list {searchTerm}</h1>
-      <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Coins</Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
-        <Switch>
-          <Route exact path="/">
-            <Search search={searchTerm} onSearch={handleSearch} />
-            {coinList.length ? (
-              <List coinList={searchedCoins} />
-            ) : (
-              <p>Cargando...</p>
-            )}
-          </Route>
-          <Route
-            exact
-            path="/watchlist"
-            render={(props) => (
-              <Watchlist
-                coinsInWatchList={coinsInWatchList}
-                removeFromWatchlist={handleWatchList}
-                handleModalStatus={handleModalStatus}
-                isOpen={isOpen}
-                location={props.location}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/add-alert"
-            render={(props) => (
-              <AddAlertForm
-                onWatchList={handleWatchList}
-                location={props.location}
-                handleModalStatus={handleModalStatus}
-                isOpen={isOpen}
-              />
-            )}
-          />
-        </Switch>
-      </Router>
+      <h1> Coins list </h1>
+      <NavBar
+        searchTerm={searchTerm}
+        handleSearch={handleSearch}
+        isOpen={isOpen}
+        coinList={coinList}
+        searchedCoins={searchedCoins}
+        handleModalStatus={handleModalStatus}
+        handleWatchList={handleWatchList}
+        coinsInWatchList={coinsInWatchList}
+      />
     </div>
   );
 };
