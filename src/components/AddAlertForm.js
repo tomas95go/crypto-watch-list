@@ -14,7 +14,7 @@ const AddAlertForm = ({
     {
       id: 0,
       type: `Select an option...`,
-      description: `Select an option...`,
+      description: `Select alert type...`,
     },
     {
       id: 1,
@@ -31,7 +31,7 @@ const AddAlertForm = ({
   const alertTriggers = [
     {
       id: 0,
-      description: `Select an option`,
+      description: `Select alert trigger...`,
       percentage: 0,
     },
     {
@@ -73,66 +73,129 @@ const AddAlertForm = ({
   const [alertTrigger, setAlertTrigger] = useState(0);
 
   return (
-    <div>
-      <span>{id}</span>
-      <span>{symbol}</span>
-      <img src={image} alt={name} height="30px" width="30px" />
-      <input disabled value={name} />
-      <button onClick={handleModalStatus}> Create Alert</button>
-      <select
-        onChange={(event) => {
-          handleAlertType(event);
-        }}
-      >
-        {alertTypes.map((alert) => {
-          return alert.id ? (
-            <option key={alert.id} value={alert.id}>
-              {alert.description}
-            </option>
+    <div className="section">
+      <div className="columns is-centered">
+        <div className="column is-half">
+          <div className="card">
+            <div className="card-header has-background-primary">
+              <p className="card-header-title is-flex is-justify-content-center has-text-white has-text-weight-bold">
+                {name}
+                <img
+                  className="ml-2"
+                  src={image}
+                  alt={name}
+                  height="25px"
+                  width="25px"
+                />
+              </p>
+            </div>
+            <div className="card-content">
+              <div className="field is-horizontal">
+                <div className="field-label is-normal">
+                  <label className="label ">Alert type</label>
+                </div>
+                <div className="field-body">
+                  <div className="field">
+                    <div className="control">
+                      <div className="select is-fullwidth has-text-centered">
+                        <select
+                          onChange={(event) => {
+                            handleAlertType(event);
+                          }}
+                        >
+                          {alertTypes.map((alert) => {
+                            return alert.id ? (
+                              <option key={alert.id} value={alert.id}>
+                                {alert.description}
+                              </option>
+                            ) : (
+                              <option
+                                defaultValue={alert.id}
+                                key={alert.id}
+                                value={alert.id}
+                              >
+                                {alert.description}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="field is-horizontal">
+                <div className="field-label is-normal">
+                  <label className="label ">Trigger</label>
+                </div>
+                <div className="field-body">
+                  <div className="field">
+                    <div className="control">
+                      <div className="select is-fullwidth has-text-centered">
+                        <select
+                          onChange={(event) => {
+                            handleAlertTrigger(event);
+                          }}
+                        >
+                          {alertTriggers.map((trigger) => {
+                            return trigger.id ? (
+                              <option
+                                key={trigger.id}
+                                value={trigger.percentage}
+                              >
+                                {trigger.description}
+                              </option>
+                            ) : (
+                              <option
+                                defaultValue={trigger.percentage}
+                                key={trigger.id}
+                                value={trigger.percentage}
+                              >
+                                {trigger.description}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="field is-horizontal has-text-centered">
+                <div className="field-body">
+                  <div className="field">
+                    <div className="control">
+                      <button
+                        className="button is-primary"
+                        onClick={handleModalStatus}
+                      >
+                        Create Alert
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {isOpen ? (
+            <ConfirmActionModal
+              isOpen={isOpen}
+              name={name}
+              id={id}
+              image={image}
+              symbol={symbol}
+              alertType={alertType}
+              alertTrigger={alertTrigger}
+              alertTypeDesc={alertTypes[alertType].description}
+              onWatchList={onWatchList}
+              action="add"
+            />
           ) : (
-            <option defaultValue={alert.id} key={alert.id} value={alert.id}>
-              {alert.description}
-            </option>
-          );
-        })}
-      </select>
-      <select
-        onChange={(event) => {
-          handleAlertTrigger(event);
-        }}
-      >
-        {alertTriggers.map((trigger) => {
-          return trigger.id ? (
-            <option key={trigger.id} value={trigger.percentage}>
-              {trigger.description}
-            </option>
-          ) : (
-            <option
-              defaultValue={trigger.percentage}
-              key={trigger.id}
-              value={trigger.percentage}
-            >
-              {trigger.description}
-            </option>
-          );
-        })}
-      </select>
-      {isOpen ? (
-        <ConfirmActionModal
-          isOpen={isOpen}
-          name={name}
-          id={id}
-          image={image}
-          symbol={symbol}
-          alertType={alertType}
-          alertTrigger={alertTrigger}
-          alertTypeDesc={alertTypes[alertType].description}
-          onWatchList={onWatchList}
-          action="add"
-        />
-      ) : (
-        false
-      )}
+            false
+          )}
+        </div>
+      </div>
     </div>
   );
 };
