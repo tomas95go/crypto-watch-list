@@ -31,10 +31,12 @@ const App = () => {
   );
 
   const handleWatchList = (coin, code) => {
-    console.log(coin);
     let coinInWatchList;
-    /*console.log(id, code);
-    if (code === `remove`) {
+    if (code === `cancel`) {
+      setModalStatus(!isOpen);
+      return false;
+    }
+    /*if (code === `remove`) {
       coinInWatchList = removeFromWatchlist(id);
     }*/
     if (code === `add`) {

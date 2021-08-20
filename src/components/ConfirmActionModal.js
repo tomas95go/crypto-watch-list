@@ -11,15 +11,19 @@ const ConfirmActionModal = ({
   price,
 }) => {
   const handleWatchList = (event) => {
-    const newAlert = {
-      id: id,
-      name: name,
-      price: price,
-      alert_trigger: alertTrigger,
-      alert_type: alertType,
-      alert_description: alertTypeDesc,
-    };
-    onWatchList(newAlert, action);
+    if (event.target.value === `cancel`) {
+      onWatchList(0, 'cancel');
+    } else {
+      const newAlert = {
+        id: id,
+        name: name,
+        price: price,
+        alert_trigger: alertTrigger,
+        alert_type: alertType,
+        alert_description: alertTypeDesc,
+      };
+      onWatchList(newAlert, action);
+    }
   };
 
   return (
@@ -27,6 +31,7 @@ const ConfirmActionModal = ({
       <div
         className="modal-background"
         onClick={(event) => handleWatchList(event)}
+        value="cancel"
       ></div>
       <div className="modal-card">
         <header className="modal-card-head">
@@ -57,6 +62,7 @@ const ConfirmActionModal = ({
           </button>
           <button
             className="button"
+            value="cancel"
             onClick={(event) => handleWatchList(event)}
           >
             Cancel
