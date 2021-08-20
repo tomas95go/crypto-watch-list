@@ -47,7 +47,7 @@ const ConfirmActionModal = ({
         <section className="modal-card-body">
           {action === 'remove' ? (
             <p>
-              Do you want to remove <strong>{name}</strong> from your wishlist?
+              Do you want to remove <strong>{name}</strong> from your watchlist?
             </p>
           ) : (
             <p className="has-text-center">

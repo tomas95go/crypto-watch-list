@@ -69,8 +69,30 @@ const AddAlertForm = ({
     setAlertTrigger(event.target.value);
   };
 
+  const handleErrors = () => {
+    const errorList = [];
+    errorList.length = 0;
+    const validateAlertType = !Number(alertType) ? true : false;
+    const validateAlertTrigger = !Number(alertTrigger) ? true : false;
+
+    if (validateAlertType) {
+      errorList.push({ id: 1, text: `Please, select an alert type` });
+    }
+
+    if (validateAlertTrigger) {
+      errorList.push({ id: 2, text: `Please, select an alert trigger` });
+    }
+
+    setErrors(errorList);
+
+    if (!errorList.length) {
+      handleModalStatus();
+    }
+  };
+
   const [alertType, setAlertType] = useState(0);
   const [alertTrigger, setAlertTrigger] = useState(0);
+  const [errors, setErrors] = useState([]);
 
   return (
     <div className="section">
@@ -167,10 +189,30 @@ const AddAlertForm = ({
                     <div className="control">
                       <button
                         className="button is-primary"
-                        onClick={handleModalStatus}
+                        onClick={handleErrors}
                       >
                         Create Alert
                       </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="field is-horizontal">
+                <div className="field-body">
+                  <div className="field is-flex is-justify-content-center">
+                    <div className="control">
+                      <ul>
+                        {errors.map((error) => {
+                          return (
+                            <li
+                              className="has-text-warning-dark has-text-weight-bold"
+                              key={error.id}
+                            >
+                              {error.text}
+                            </li>
+                          );
+                        })}
+                      </ul>
                     </div>
                   </div>
                 </div>
