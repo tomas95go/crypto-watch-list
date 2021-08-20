@@ -39,8 +39,8 @@ const List = ({ coinList }) => {
                       <span>{symbol}</span>
                     </div>
                   </td>
-                  <td>{current_price}</td>
-                  <td>{market_cap.toLocaleString('es-es')}</td>
+                  <td>{current_price.toLocaleString('en-US')}</td>
+                  <td>{market_cap.toLocaleString('en-US')}</td>
                   <td>
                     {on_watch_list ? (
                       <Link
