@@ -59,7 +59,7 @@ const List = ({ coinList }) => {
                         className="has-text-white"
                         to={{
                           pathname: `/add-alert`,
-                          state: { id, name, image, symbol },
+                          state: { id, name, image, symbol, current_price },
                         }}
                       >
                         <button className="button is-primary is-small">

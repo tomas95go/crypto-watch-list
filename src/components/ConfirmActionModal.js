@@ -8,9 +8,18 @@ const ConfirmActionModal = ({
   alertTypeDesc,
   onWatchList,
   action,
+  price,
 }) => {
   const handleWatchList = (event) => {
-    onWatchList(event.target.value, action);
+    const newAlert = {
+      id: id,
+      name: name,
+      price: price,
+      alert_trigger: alertTrigger,
+      alert_type: alertType,
+      alert_description: alertTypeDesc,
+    };
+    onWatchList(newAlert, action);
   };
 
   return (

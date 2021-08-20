@@ -3,7 +3,7 @@ import { useState } from 'react';
 const AddAlertForm = ({
   history,
   location: {
-    state: { name, id, image, symbol },
+    state: { name, id, image, symbol, current_price },
   },
   match,
   onWatchList,
@@ -190,6 +190,7 @@ const AddAlertForm = ({
               alertTypeDesc={alertTypes[alertType].description}
               onWatchList={onWatchList}
               action="add"
+              price={current_price}
             />
           ) : (
             false

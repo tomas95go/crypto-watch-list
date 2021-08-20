@@ -5,7 +5,7 @@ const Watchlist = ({
   handleModalStatus,
   isOpen,
   location: {
-    state: { name, id, image, symbol },
+    state: { name, id, image, symbol, current_price },
   },
 }) => {
   return (
@@ -18,7 +18,7 @@ const Watchlist = ({
                 <th>Coin</th>
                 <th>Price</th>
                 <th>Alert trigger</th>
-                <th>Notify by</th>
+                <th>Notify on</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -28,21 +28,21 @@ const Watchlist = ({
                   return (
                     <tr key={coin.id}>
                       <td>{coin.name}</td>
-                      <td>{coin.current_price}</td>
-                      <td>{coin.symbol}</td>
-                      <td>{coin.market_cap}</td>
-                      {coin.on_watch_list ? (
-                        <td>
-                          <button
-                            className="button is-primary is-small"
-                            onClick={handleModalStatus}
-                          >
-                            Remove
-                          </button>
-                        </td>
+                      <td>{coin.price}</td>
+                      {Number(coin.alert_type) === 2 ? (
+                        <td>-{coin.alert_trigger}%</td>
                       ) : (
-                        false
+                        <td>{coin.alert_trigger}%</td>
                       )}
+                      <td>{coin.alert_description}</td>
+                      <td>
+                        <button
+                          className="button is-primary is-small"
+                          onClick={handleModalStatus}
+                        >
+                          Remove
+                        </button>
+                      </td>
                     </tr>
                   );
                 })
@@ -65,6 +65,7 @@ const Watchlist = ({
               alertTypeDesc=""
               onWatchList={removeFromWatchlist}
               action="remove"
+              price={current_price}
             />
           ) : (
             false

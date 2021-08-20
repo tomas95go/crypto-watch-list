@@ -6,6 +6,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setModalStatus] = useState(false);
   const [isActive, setNavbarStatus] = useState(false);
+  const [watchList, setWatchList] = useState([]);
 
   useEffect(() => {
     fetch(
@@ -29,14 +30,17 @@ const App = () => {
     coin.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleWatchList = (id, code) => {
+  const handleWatchList = (coin, code) => {
+    console.log(coin);
     let coinInWatchList;
-    console.log(id, code);
+    /*console.log(id, code);
     if (code === `remove`) {
       coinInWatchList = removeFromWatchlist(id);
-    }
+    }*/
     if (code === `add`) {
-      coinInWatchList = addToWatchList(id);
+      coinInWatchList = addToWatchList(coin.id);
+      watchList.push(coin);
+      setWatchList(watchList);
     }
     setModalStatus(!isOpen);
     return setCoinList(coinInWatchList);
@@ -66,9 +70,9 @@ const App = () => {
     return coinInWatchList;
   };
 
-  const coinsInWatchList = coinList.filter((coin) => {
+  /*const coinsInWatchList = watchList.filter((coin) => {
     return coin.on_watch_list ? coin : false;
-  });
+  });*/
 
   const handleNavbarStatus = () => {
     setNavbarStatus(!isActive);
@@ -84,7 +88,7 @@ const App = () => {
         searchedCoins={searchedCoins}
         handleModalStatus={handleModalStatus}
         handleWatchList={handleWatchList}
-        coinsInWatchList={coinsInWatchList}
+        coinsInWatchList={watchList}
         handleNavbarStatus={handleNavbarStatus}
         isActive={isActive}
       />
