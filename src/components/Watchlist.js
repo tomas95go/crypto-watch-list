@@ -14,11 +14,11 @@ const Watchlist = ({
         <div className="column is-flex is-justify-content-center">
           {coinsInWatchList.length ? (
             <div className="table-container">
-              <table className="table is-striped">
+              <table className="table is-striped is-narrow">
                 <thead className="has-text-centered">
                   <tr>
                     <th>Coin</th>
-                    <th>Price</th>
+                    <th className="is-hidden-tablet is-hidden-mobile">Price</th>
                     <th>Alert trigger</th>
                     <th>Notify on</th>
                     <th>Action</th>
@@ -29,7 +29,9 @@ const Watchlist = ({
                     return (
                       <tr key={coin.id}>
                         <td>{coin.name}</td>
-                        <td>{coin.price}</td>
+                        <td className="is-hidden-tablet is-hidden-mobile">
+                          {coin.price}
+                        </td>
                         {Number(coin.alert_type) === 2 ? (
                           <td>-{coin.alert_trigger}%</td>
                         ) : (
