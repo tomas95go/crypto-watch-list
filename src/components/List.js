@@ -40,7 +40,7 @@ const List = ({ coinList }) => {
                     </div>
                   </td>
                   <td>{current_price}</td>
-                  <td>{market_cap}</td>
+                  <td>{market_cap.toLocaleString('es-es')}</td>
                   <td>
                     {on_watch_list ? (
                       <Link
