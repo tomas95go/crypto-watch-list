@@ -56,6 +56,14 @@ const NavBar = ({
       <Switch>
         <Route exact path="/">
           <div className="box">
+            <div className="block">
+              <h1 className="is-title has-text-centered"> Crypto watchlist</h1>
+              <h2 className="is-subtitle has-text-centered">
+                Add coins from the top 20 coins of{' '}
+                <a href="https://www.coingecko.com/en">Coingecko</a> to your
+                watchlist!
+              </h2>
+            </div>
             <Search search={searchTerm} onSearch={handleSearch} />
             {coinList.length ? (
               <List coinList={searchedCoins} />
