@@ -36,7 +36,12 @@ const ConfirmActionModal = ({
       <div className="modal-card">
         <header className="modal-card-head">
           <p className="modal-card-title has-text-centered">Confirm action</p>
-          <button className="delete" aria-label="close"></button>
+          <button
+            className="delete"
+            aria-label="close"
+            onClick={(event) => handleWatchList(event)}
+            value="cancel"
+          ></button>
         </header>
         <section className="modal-card-body">
           <p className="has-text-center">
