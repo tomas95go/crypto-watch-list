@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 const ConfirmActionModal = ({
   id,
   name,
@@ -64,13 +65,15 @@ const ConfirmActionModal = ({
           )}
         </section>
         <footer className="modal-card-foot">
-          <button
-            className="button is-success"
-            value={id}
-            onClick={(event) => handleWatchList(event)}
-          >
-            Save
-          </button>
+          <Link to="/">
+            <button
+              className="button is-success"
+              value={id}
+              onClick={(event) => handleWatchList(event)}
+            >
+              Save
+            </button>
+          </Link>
           <button
             className="button"
             value="cancel"
