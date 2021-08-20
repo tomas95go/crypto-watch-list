@@ -18,7 +18,7 @@ const Watchlist = ({
                 <thead className="has-text-centered">
                   <tr>
                     <th>Coin</th>
-                    <th className="is-hidden-tablet is-hidden-mobile">Price</th>
+                    <th className="is-hidden-touch">Price</th>
                     <th>Alert trigger</th>
                     <th>Notify on</th>
                     <th>Action</th>
@@ -29,9 +29,7 @@ const Watchlist = ({
                     return (
                       <tr key={coin.id}>
                         <td>{coin.name}</td>
-                        <td className="is-hidden-tablet is-hidden-mobile">
-                          {coin.price}
-                        </td>
+                        <td className="is-hidden-touch">{coin.price}</td>
                         {Number(coin.alert_type) === 2 ? (
                           <td>-{coin.alert_trigger}%</td>
                         ) : (
