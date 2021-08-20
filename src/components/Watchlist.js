@@ -12,19 +12,19 @@ const Watchlist = ({
     <div className="section">
       <div className="columns is-centered">
         <div className="column is-flex is-justify-content-center">
-          <table className="table is-striped">
-            <thead className="has-text-centered">
-              <tr>
-                <th>Coin</th>
-                <th>Price</th>
-                <th>Alert trigger</th>
-                <th>Notify on</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody className="has-text-centered">
-              {coinsInWatchList.length ? (
-                coinsInWatchList.map((coin) => {
+          {coinsInWatchList.length ? (
+            <table className="table is-striped">
+              <thead className="has-text-centered">
+                <tr>
+                  <th>Coin</th>
+                  <th>Price</th>
+                  <th>Alert trigger</th>
+                  <th>Notify on</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody className="has-text-centered">
+                {coinsInWatchList.map((coin) => {
                   return (
                     <tr key={coin.id}>
                       <td>{coin.name}</td>
@@ -45,14 +45,12 @@ const Watchlist = ({
                       </td>
                     </tr>
                   );
-                })
-              ) : (
-                <tr>
-                  <td>You don't have anything on your watchlist yet!</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+                })}
+              </tbody>
+            </table>
+          ) : (
+            <p>You don't have anything on your watchlist yet!</p>
+          )}
           {isOpen ? (
             <ConfirmActionModal
               isOpen={isOpen}
