@@ -36,7 +36,7 @@ const List = ({ coinList }) => {
                         height="25px"
                         width="25px"
                       ></img>
-                      <span>{symbol}</span>
+                      <span>{symbol.toUpperCase()}</span>
                     </div>
                   </td>
                   <td>{current_price.toLocaleString('en-US')}</td>
