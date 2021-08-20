@@ -8,10 +8,10 @@ const List = ({ coinList }) => {
           <table className="table is-striped is-narrow">
             <thead className="has-text-centered">
               <tr>
-                <th className="is-hidden-tablet is-hidden-mobile">Name</th>
+                <th className="is-hidden-touch">Name</th>
                 <th>Symbol</th>
                 <th>Current Price</th>
-                <th className="is-hidden-tablet is-hidden-mobile">Marketcap</th>
+                <th className="is-hidden-touch">Marketcap</th>
                 <th>Watchlist</th>
               </tr>
             </thead>
@@ -28,9 +28,7 @@ const List = ({ coinList }) => {
                 } = coin;
                 return (
                   <tr key={id}>
-                    <td className="is-hidden-tablet is-hidden-mobile">
-                      {name}
-                    </td>
+                    <td className="is-hidden-touch">{name}</td>
                     <td>
                       <div className="is-flex is-justify-content-space-around">
                         <img
@@ -43,7 +41,7 @@ const List = ({ coinList }) => {
                       </div>
                     </td>
                     <td>{current_price.toLocaleString('en-US')}</td>
-                    <td className="is-hidden-tablet is-hidden-mobile">
+                    <td className="is-hidden-touch">
                       {market_cap.toLocaleString('en-US')}
                     </td>
                     <td>
