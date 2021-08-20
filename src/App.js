@@ -38,7 +38,8 @@ const App = () => {
     }
     if (code === `remove`) {
       coinInWatchList = removeFromWatchlist(coin.id);
-      watchList.splice(coin.id, 1);
+      const coin_index = watchList.findIndex((wcoin) => wcoin.id === coin.id);
+      watchList.splice(coin_index, 1);
       setWatchList(watchList);
     }
     if (code === `add`) {
