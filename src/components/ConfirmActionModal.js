@@ -44,18 +44,24 @@ const ConfirmActionModal = ({
           ></button>
         </header>
         <section className="modal-card-body">
-          <p className="has-text-center">
-            Do you want to confirm the <strong>{name}</strong> alert when{' '}
-            <strong>{alertTypeDesc.toLowerCase()}</strong>{' '}
-            <strong>
-              {Number(alertType) === 2 ? (
-                <span>-{alertTrigger}%</span>
-              ) : (
-                <span>{alertTrigger}%</span>
-              )}
-            </strong>{' '}
-            ?
-          </p>
+          {action === 'remove' ? (
+            <p>
+              Do you want to remove <strong>{name}</strong> from your wishlist?
+            </p>
+          ) : (
+            <p className="has-text-center">
+              Do you want to confirm the <strong>{name}</strong> alert when{' '}
+              <strong>{alertTypeDesc.toLowerCase()}</strong>{' '}
+              <strong>
+                {Number(alertType) === 2 ? (
+                  <span>-{alertTrigger}%</span>
+                ) : (
+                  <span>{alertTrigger}%</span>
+                )}
+              </strong>{' '}
+              ?
+            </p>
+          )}
         </section>
         <footer className="modal-card-foot">
           <button
@@ -63,7 +69,7 @@ const ConfirmActionModal = ({
             value={id}
             onClick={(event) => handleWatchList(event)}
           >
-            Save changes
+            Save
           </button>
           <button
             className="button"
