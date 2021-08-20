@@ -36,9 +36,11 @@ const App = () => {
       setModalStatus(!isOpen);
       return false;
     }
-    /*if (code === `remove`) {
-      coinInWatchList = removeFromWatchlist(id);
-    }*/
+    if (code === `remove`) {
+      coinInWatchList = removeFromWatchlist(coin.id);
+      watchList.splice(coin.id, 1);
+      setWatchList(watchList);
+    }
     if (code === `add`) {
       coinInWatchList = addToWatchList(coin.id);
       watchList.push(coin);
